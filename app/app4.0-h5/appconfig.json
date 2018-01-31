@@ -1,0 +1,35 @@
+{
+    "alias" : {
+    	"kui-css" : "src/css/kui.css",
+    	"common-css" : "src/css/common.css",
+    	"comments-css" : "src/css/comments.css",
+    	"news-css" : "src/css/news.css",
+    	"loading-css" : "src/css/loading.css",
+    	"dialog-css" : "src/css/dialog.css",
+    	"player-css": "src/css/player.css",
+    	"live-css" : "src/css/live.css",
+    	"spin-css" : "src/css/spin.css",
+
+    	"fastclick" : "src/js/pub/fastclick",
+    	"common" : "src/js/pub/common",
+    	"iscroll-probe" : "src/js/pub/iscroll-probe",
+    	"date-format" : "src/js/pub/date-format",
+    	"zepto" : "src/js/pub/zepto",
+    	"sports-player" : "src/js/pub/sports-player",
+    	"swiper": "src/js/pub/swiper",
+    	"chart": "src/js/pub/chart",
+    	"urlstuff" : "src/js/pub/urlstuff",
+    	"bridge" : "src/js/pub/bridge",
+    	"mobile" : "src/js/pub/mobile",
+    	"bip" : "src/js/pub/bip",
+    	"configs" : "src/js/pub/configs",
+
+    	"Loading" : "src/components/Loading.vue",
+    	"Dialog" : "src/components/Dialog.vue",
+    	"Vs-pannel" : "src/components/Vs-pannel.vue",
+    	"Matchresult" : "src/components/Matchresult.vue"
+    },
+    "open" : true,
+    "home": "live.html",
+    "watch" : true
+}

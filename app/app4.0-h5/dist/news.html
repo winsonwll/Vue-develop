@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>PPTV 聚力体育图文资讯</title>
+<link href="http://staticsports.pplive.cn/assets/mobile/app/app4.0-h5/dist/v_00000/css/vendors.css" rel="stylesheet"><link href="http://staticsports.pplive.cn/assets/mobile/app/app4.0-h5/dist/v_00000/css/news.css" rel="stylesheet"></head>
+<body ontouchstart=''>
+	<div class="layout news" id="layout" v-bind:data-id="aid" v-bind:data-realurl="mobileUrl">
+		<div class="kui-txt-sub content">
+			<h1 v-cloak>{= title =}</h1>
+			<div class="sub kui-txt-info">
+				<span class="i-b" v-cloak v-show="source">{= source =}</span>
+				<span class="i-b" v-cloak v-show="author">{= author =}</span>
+				<span class="i-b" v-cloak v-show="time">{= time =}</span>
+			</div>
+			<article v-html="rawHTML" class="kui-txt-justify kui-txt-default kui-txt-sub"></article>
+		</div>
+		<Loading v-bind:show="showLoading"></Loading>
+		<x-dialog v-bind:dialog-options="dialogOptions" v-on:dialog-events-remove="onDialogRemove"></x-dialog>
+	</div>
+<script type="text/javascript" src="http://staticsports.pplive.cn/assets/mobile/app/app4.0-h5/dist/v_00000/js/vendors.js"></script><script type="text/javascript" src="http://staticsports.pplive.cn/assets/mobile/app/app4.0-h5/dist/v_00000/js/news.js"></script></body>
+</html>

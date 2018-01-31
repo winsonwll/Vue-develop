@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>PPTV体育 直播</title>
+<link href="http://staticsports.pplive.cn/assets/mobile/app/app4.0-h5/dist/v_00000/css/vendors.css" rel="stylesheet"><link href="http://staticsports.pplive.cn/assets/mobile/app/app4.0-h5/dist/v_00000/css/live.css" rel="stylesheet"></head>
+<body ontouchstart=''>
+	<div class="layout live" id="layout">
+		<!-- 比赛信息 -->
+		<vs-pannel v-bind:game-info="gameInfo"></vs-pannel>
+		<!-- 实时赛况 -->
+		<section class="info kui-txt-sub">
+			<h5 class="kui-border-tit kui-txt-info hd">实时赛况</h5>
+			<div class="bd">
+				<div class="hook" v-for="(item, index) in result" :data-id="index" :key="index" :data-event="item.event" :data-type="item.type">
+					<ul class="kui-tiled" v-if="item.event != -1" >
+						<li>
+							<div class="item" v-if="item.type == 1" v-bind:class="[item.event == 6 ? 'substitution' : '']">
+								<!-- 人物 -->
+								<div class="i-b" v-cloak>{= item.pname =}</div>
+								<!-- 事件 : 0进球 1点球 2乌龙球-->
+								<template v-if="[0, 1, 2].indexOf(item.event) > -1">
+									<div class="i-b kui-txt-red" v-cloak>({= item.event | translate =})</div>
+									<div class="i-b ball" ></div>
+								</template>
+								<!-- 事件 3黄牌 -->
+								<div class="i-b yellow card" v-if="item.event == 3"></div>
+								<!-- 事件 4红牌 -->
+								<div class="i-b red card" v-if="item.event == 4"></div>
+								<!-- 事件 5两黄变一红 -->
+								<template v-if="item.event == 5">
+									<div class="i-b yellow cardx2"></div>
+									<div class="i-b red card"></div>
+								</template>
+								<!-- 事件 6换人 -->
+								<template class="item substitution" v-if="item.event == 6">
+									<div class="i-b detail">
+										<span class="up" v-cloak>{= item.upname =}</span>
+										<span class="down" v-cloak>{= item.downname =}</span>
+									</div>
+									<i class="i-b"></i>
+								</template>
+							</div>
+						</li>
+						<li class="time">
+							<div class="item" v-cloak>{= item.minute =}</div>
+						</li>
+						<li>
+							<div class="item" v-if="item.type == 2" v-bind:class="[item.event == 6 ? 'substitution' : '']">
+								<!-- 事件 : 0进球 1点球 2乌龙球-->
+								<template v-if="[0, 1, 2].indexOf(item.event) > -1">
+									<div class="i-b ball" ></div>
+									<div class="i-b kui-txt-red" v-cloak>({= item.event | translate =})</div>
+								</template>
+								<!-- 事件 3黄牌 -->
+								<div class="i-b yellow card" v-if="item.event == 3"></div>
+								<!-- 事件 4红牌 -->
+								<div class="i-b red card" v-if="item.event == 4"></div>
+								<!-- 事件 5两黄变一红 -->
+								<template v-if="item.event == 5">
+									<div class="i-b red card"></div>
+									<div class="i-b yellow cardx2"></div>
+								</template>
+								<!-- 事件 6换人 -->
+								<template class="item substitution" v-if="item.event == 6">
+									<i class="i-b"></i>
+									<div class="i-b detail">
+										<span class="up" v-cloak>{= item.upname =}</span>
+										<span class="down" v-cloak>{= item.downname =}</span>
+									</div>
+								</template>
+								<!-- 人物 -->
+								<div class="i-b" v-cloak>{= item.pname =}</div>
+							</div>
+						</li>
+					</ul>
+					<!-- 比赛结束 -->
+					<div class="kui-center" v-else>
+						<div class="end">比赛结束</div>
+					</div>	
+				</div>
+				
+				<!-- <ul class="kui-tiled">
+					<li>
+						<div class="item">
+							<div class="i-b">[黄牌]法布雷加斯</div>
+							<div class="i-b ball"></div>
+						</div>
+					</li>
+					<li class="time">
+						<div class="item">15</div>
+					</li>
+					<li>
+						<div class="item">
+							<div class="i-b yellow cardx2"></div>
+							<div class="i-b">[黄牌]法布雷加斯</div>
+						</div>
+					</li>
+				</ul>
+				<ul class="kui-tiled">
+					<li>
+						<div class="item">
+							<div class="i-b">[黄牌]法布雷加斯</div>
+							<div class="i-b red card"></div>
+						</div>
+					</li>
+					<li class="time">
+						<div class="item">15</div>
+					</li>
+					<li>
+						<div class="item substitution">
+							<i class="i-b"></i>
+							<div class="i-b detail">
+								<span class="up">[黄牌]法布雷加斯</span>
+								<span class="down">梅西</span>
+							</div>
+						</div>
+					</li>
+				</ul> -->
+			</div>
+		</section>
+		<Loading v-bind:show="showLoading"></Loading>
+		<x-dialog v-bind:dialog-options="dialogOptions" v-on:dialog-events-remove="onDialogRemove"></x-dialog>
+	</div>
+<script type="text/javascript" src="http://staticsports.pplive.cn/assets/mobile/app/app4.0-h5/dist/v_00000/js/vendors.js"></script><script type="text/javascript" src="http://staticsports.pplive.cn/assets/mobile/app/app4.0-h5/dist/v_00000/js/live.js"></script></body>
+</html>
+
+
+
+
+
+
+

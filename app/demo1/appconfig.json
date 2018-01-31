@@ -1,0 +1,8 @@
+{
+    "alias": {
+        "layout-css": "src/css/layout.css"
+    },
+    "open" : true,
+    "home": "index.html",
+    "watch" : true
+}

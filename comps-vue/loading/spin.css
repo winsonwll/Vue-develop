@@ -1,0 +1,61 @@
+/**
+ * 加载状态
+ * kv.wang87@gmail.com
+ * 
+ */
+
+.spin {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(237, 239, 242, .8);
+	display : -webkit-box;
+	display: box;
+	-webkit-box-pack : center;
+			box-pack : center;
+	-webkit-box-align : center;
+			box-align : center;
+    z-index: 900;
+}
+
+.spin .inner {
+    width: 3rem;
+    height: 3rem;
+    background: url(logo.png) center center no-repeat;
+    background-size: 50% 50%;
+    position: relative;
+}
+
+.spin .inner:before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: "";
+    background: url(load.png) no-repeat;
+    width: 3rem;
+    height: 3rem;
+    background-size: contain;
+    -webkit-animation: spin 1s linear infinite; animation: spin 1s linear infinite;
+    		animation: spin 1s linear infinite; animation: spin 1s linear infinite;
+}
+
+
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,36 @@
+
+/* 评论页 */
+.comments { padding: 0;  }
+.comments .tit { padding-left: 0.55rem; height: .9rem; line-height: .9rem; padding-top: .1rem; margin-bottom: .5rem; margin-top: .75rem; }
+.comments .no-comment { height: 100%;  }
+.comments .comments-bd { padding: .5rem .55rem; height: 100%; /*padding-bottom: 0.5rem;*/ }
+.comments .comments-bd .comment { padding-bottom: .55rem; margin-bottom: .75rem; }
+.comments .comments-bd .main { margin-top: .5rem;  }
+.comments .avator { width: 2rem; height: 2rem; border-radius: 100%; border:.2rem solid #bbb; -webkit-box-flex : 0; box-flex : 0; overflow: hidden; margin-right: .5rem; box-sizing: content-box; background: url(comment-avator.jpg) no-repeat; background-size: cover; }  
+.comments .avator img { width: 100%; height: 100%;  }
+.comments .reply { background-color: #f6f6f6; color: #666; padding:0.45rem; line-height: 1.4; width: 100%; border: 1px solid #eeeff4; border-top:none; }
+.comments .reply h5:last-of-type { width: auto; -webkit-box-flex : 0; box-flex : 0;  }
+.comments .reply+.content { margin-top: .4rem; }
+.comments h5 { margin-bottom: .3rem;  }
+.comments .content { margin-top: .65rem; line-height: 1.5; }
+.comments .comment-btn { margin-top: .5rem; width: 100%; text-align: right; overflow: hidden; letter-spacing: -.125rem; }
+.comments .comment-btn {}
+.comments .comment-btn a { display: inline-block; padding:1px .5rem 0; color: #b5b5b5; letter-spacing: normal;  }
+.comments .comment-btn a:first-of-type {  }
+.comments .comment-btn a:last-of-type { padding-right: 0; }
+.comments .comment-btn+.reply-box { margin-top: .65rem; } 
+.comments .reply-box { width: 100%; padding-right: .5rem; }
+.comments .reply-box>div:first-of-type { border-top: 1px solid #eeeff4; }
+.comments .praise i,
+.comments .praise span { color: #a5bae9;  }
+.comments .label { margin-top: .15rem;  }
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,16 @@
+
+
+/* 图文资讯 */
+.news { line-height: 1.5; padding-left: .5rem; padding-right: .5rem; -webkit-touch-callout:none; overflow: auto; -webkit-overflow-scrolling:touch; }
+.news .content { height: auto; overflow: hidden; }
+.news .content img { margin: .25rem auto; }
+.news .content div,
+.news .content p { max-width: 100%;  } 
+.news h5 { font-weight: bold; }
+.news .sub { font-size: .7rem; margin-bottom: .25rem; }
+.news .kui-txt-sub { font-size: .75rem;  }
+
+
+
+
+

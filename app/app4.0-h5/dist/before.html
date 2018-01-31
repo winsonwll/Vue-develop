@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>直播前</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<link href="http://staticsports.pplive.cn/assets/mobile/app/app4.0-h5/dist/v_00000/css/vendors.css" rel="stylesheet"><link href="http://staticsports.pplive.cn/assets/mobile/app/app4.0-h5/dist/v_00000/css/before.css" rel="stylesheet"></head>
+<body ontouchstart=''>
+	<div class="layout" id="layout">	
+        <vs-pannel v-bind:game-info="schedule"></vs-pannel>
+
+		<!-- 比赛前瞻 { -->
+		<section class="module" v-if="playList != ''">
+			<aside class="title">比赛前瞻</aside>
+            <div class="swiper-container">
+                <ul class="swiper-wrapper">
+                    <li class="swiper-slide" v-for="(item, index) in playList" :data-id="index">
+                        <a href="javascript:void(0);" :data-id="index" :data-link="item.clientlink" :data-cid="item.channel_id">
+                            <p class="img">
+                            	<img :src="item.sloturl">
+	
+								<i class="i-mark"></i>
+								<i class="timer">3:08</i>
+                            </p>
+
+                            <p class="tit" v-cloak>{= item.title =}</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+		</section>
+		<!-- } 比赛前瞻 -->
+
+
+		<!-- 近期交战 { -->
+		<section class="mt module" v-if="logbuch != ''">
+			<aside class="title">近期交战</aside>
+			<ul class="progress_list">
+                <li class="p1" :style="{width: logbuch.pb_win + '%'}" v-if=" logbuch.win > 0 " v-cloak>
+                    <p class="p_chunk"></p>
+                    胜 {= logbuch.win =}
+                </li>
+                <li class="p2" :style="{width: logbuch.pb_flat + '%'}" v-if=" logbuch.flat > 0 " v-cloak>
+                    <p class="p_chunk"></p>
+                    平 {= logbuch.flat =}
+                </li>
+                <li class="p3" :style="{width: logbuch.pb_lose + '%'}" v-if=" logbuch.lose > 0 " v-cloak>
+                    <p class="p_chunk"></p>
+                    胜 {= logbuch.lose =}
+                </li>
+            </ul>
+		</section>
+		<!-- } 近期交战 -->
+
+
+		<!-- 近期战绩 { -->
+		<section class="mt module">
+			<aside class="title">近期战绩</aside>
+			
+            <ul class="data_wrap">
+                <li>
+                    <canvas class="circle" width="100%" height="100%"></canvas>
+                    <p class="team-name" v-cloak>{= schedule.hostTeamName =}</p>
+                </li>
+                <li>
+                    <canvas class="circle" width="100%" height="100%"></canvas>
+                    <p class="team-name" v-cloak>{= schedule.guestTeamName =}</p>
+                </li>
+            </ul>
+
+            <div class="list_flag">
+                <span>
+                    <i class="color1"></i> 胜
+                </span>
+                <span>
+                    <i class="color2"></i> 平
+                </span>
+                <span>
+                    <i class="color3"></i> 负
+                </span>
+            </div>
+		</section>
+		<!-- } 近期战绩 -->
+
+
+		<!-- 积分榜 { -->
+		<section class="mt module">
+			<aside class="title">积分榜</aside>
+			<dl class="data_list">
+                <dt class="clearfix">
+                    <span class="row1">排行</span>
+                    <span class="row2">球队</span>
+                    <span class="row3">胜</span>
+                    <span class="row4">负</span>
+                    <span class="row5">平</span>
+                    <span class="row6">积分</span>
+                </dt>
+                <dd class="clearfix" v-for="(item, index) in tabelle">
+                    <span class="row1" v-cloak>{= item.order =}</span>
+                    <span class="row2" v-cloak>{= item.teamname =}</span>
+                    <span class="row3" v-cloak>{= item.win =}</span>
+                    <span class="row4" v-cloak>{= item.flat =}</span>
+                    <span class="row5" v-cloak>{= item.lose =}</span>
+                    <span class="row6" v-cloak>{= item.score =}</span>
+                </dd>
+            </dl>
+		</section>
+		<!-- } 积分榜 -->
+		
+
+		<Loading v-bind:show="showLoading"></Loading>
+		<x-dialog v-bind:dialog-options="dialogOptions" v-on:dialog-events-remove="onDialogRemove"></x-dialog>
+
+	
+	</div>
+<script type="text/javascript" src="http://staticsports.pplive.cn/assets/mobile/app/app4.0-h5/dist/v_00000/js/vendors.js"></script><script type="text/javascript" src="http://staticsports.pplive.cn/assets/mobile/app/app4.0-h5/dist/v_00000/js/before.js"></script></body>
+</html>

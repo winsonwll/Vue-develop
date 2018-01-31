@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>PPTV体育评论</title>
+<link href="http://staticsports.pplive.cn/assets/mobile/app/app4.0-h5/dist/v_00000/css/vendors.css" rel="stylesheet"><link href="http://staticsports.pplive.cn/assets/mobile/app/app4.0-h5/dist/v_00000/css/comments.css" rel="stylesheet"></head>
+<body ontouchstart=''>
+	<div class="layout comments" id="layout">
+		<h4 class="tit kui-txt-info kui-border-tit">评论 <span v-cloak> ({=counter=}条)</span> </h4>
+		<section class="kui-center no-comment" v-if="commentLists.length == 0">
+			<h5 class="kui-txt-muted">暂无评论，快来抢沙发~</h5>
+		</section>
+		<div class="scroller-wrap kui-txt-sub" v-else id="scroller-wrap">
+			<div class="scroller" id="scroller" >
+				<div id="pull-down" class="pull-down" v-show="pdShow" v-bind:class="[pdStyles]">
+					<div class="i-b icon"></div>
+				    <div class="label i-b">{= pdLabel =}</div>
+				</div>
+				<div class="pull-down-tips" v-show="pdTipsShow">下拉刷新</div>
+				<div class="comments-bd" id="list">
+					<!-- 评论 List ST -->
+					<section class="kui-tiled kui-flex-pack-start kui-flex-align-start kui-border-b comment kui-txt-sub kui-txt-justify" 
+						:key="item.id" 
+						:data-id="item.id" 
+						:data-pid="item.pid" 
+						:data-appplt="item.appplt" 
+						:data-refname="item.ref_name"
+						v-for="(item, index) in commentLists" >
+						<div class="kui-tiled-item avator">
+							<img v-bind:src="item.user.icon" alt="avator" >
+						</div>
+						<div class="kui-tiled-item kui-flex-pack-start kui-flex-align-start kui-txt-sub main">
+							<h5 class="kui-txt-tit" v-bind:class="[webnickname== item.user.nick_name ? 'kui-txt-highlight' : '']"   
+								v-bind:data-username="item.user.user_name" v-cloak>{= item.user.nick_name||item.user.user_name =}
+							</h5>
+							<p class="kui-txt-tips kui-txt-muted" v-cloak>{= item.create_time | dateFormat =}</p>
+							<div class="kui-txt-default kui-break content" v-cloak> 
+								{= item.content =}
+							</div>
+							<div class="comment-btn kui-txt-muted">
+								<a href="javascript:;" class="kui-border-r" 
+									v-on:click="praise(item.id, item.up_ct, item)" 
+									v-bind:class="[item.praise ? 'praise' : '']"  v-cloak >
+										<i class="kui-icon-support"></i>
+										<span v-cloak >{=item.up_ct=}</span>
+								</a>
+								<a href="javascript:;" v-on:click="replyHandle({pid:item.pid,  id:item.id,  index:index,  atnickname:item.user.nick_name,  atusername:item.user.user_name,  icon:item.user.icon, level:1})">
+									<i class="kui-icon-message"></i>
+									<span v-cloak>回复</span>
+								</a>
+							</div>
+							<!-- 回复 ST -->
+							<template v-if="item.replys.length" v-for="(reply, i) in item.replys">
+								<div class="reply-box">
+									<div class="reply kui-border" 
+										v-bind:data-id="reply.id" 
+										v-bind:data-pid="reply.pid" >
+										<div class="kui-divide">
+											<h5 class="kui-txt-sub kui-txt-default kui-divide-item" v-cloak>
+												<span class="kui-txt-info kui-txt-tit">{=reply.user.nick_name=}</span>
+												<span class="kui-txt-info">回复</span>
+												<span class="kui-txt-info kui-txt-tit">{= reply.at_nick_name =}</span>
+											</h5>
+											<h5 class="kui-txt-tips kui-txt-muted kui-divide-item" v-cloak>{= reply.create_time | dateFormat =}</h5>
+										</div>
+										<p v-cloak>{= reply.content =}</p>
+										<div class="comment-btn kui-txt-muted">
+											<a href="javascript:;" class="kui-border-r" 
+												v-on:click="praise(reply.id, reply.up_ct, reply)" 
+												v-bind:class="[reply.praise ? 'praise' : '']"  v-cloak >
+													<i class="kui-icon-support"></i>
+													<span v-cloak >{=reply.up_ct=}</span>
+											</a>
+											<a href="javascript:;" v-on:click="replyHandle({pid:reply.pid,id:reply.id,index:index,  atnickname:reply.user.nick_name,atusername:reply.user.user_name,icon:reply.user.icon,level:1})">
+												<i class="kui-icon-message"></i>
+												<span v-cloak>回复</span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</template>
+							<!-- 回复列表 END -->
+						</div>
+					</section>
+					<!-- 评论 List End -->
+				</div>
+				<div id="pull-up" class="pull-up" :class="puStyles" v-show="puShow">
+					<div class="i-b icon"></div>
+				    <div class="label i-b">{= puLabel =}</div>
+				</div>
+			</div>	
+		</div>
+		
+		<Loading v-bind:show="showLoading" v-bind:content="loadingTips"></Loading>
+		<x-dialog v-bind:dialog-options="dialogOptions" v-on:dialog-events-remove="onDialogRemove"></x-dialog>
+	</div>
+<script type="text/javascript" src="http://staticsports.pplive.cn/assets/mobile/app/app4.0-h5/dist/v_00000/js/vendors.js"></script><script type="text/javascript" src="http://staticsports.pplive.cn/assets/mobile/app/app4.0-h5/dist/v_00000/js/comments.js"></script></body>
+</html>
